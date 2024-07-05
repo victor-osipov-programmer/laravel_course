@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Post\StoreRequest;
+use App\Http\Requests\Post\UpdateRequest;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\PostTag;
@@ -12,6 +14,7 @@ class PostController extends Controller
 {
     public function index()
     {
+
         $posts = Post::all();
 
         return view("post.index", compact("posts"));
@@ -23,15 +26,9 @@ class PostController extends Controller
 
         return view("post.create", compact('categories', 'tags'));
     }
-    public function store()
+    public function store(StoreRequest $request)
     {
-        $data = request()->validate([
-            "title" => "required|string",
-            "content" => "required|string",
-            "image" => "required|string",
-            "category_id" => "required|integer",
-            "tags" => "required",
-        ]);
+        $data = $request->validated();
         $tags = $data['tags'];
         unset($data['tags']);
 
@@ -50,15 +47,9 @@ class PostController extends Controller
 
         return view('post.edit', compact('post', 'categories', 'tags'));
     }
-    public function update(Post $post)
+    public function update(UpdateRequest $request, Post $post)
     {
-        $data = request()->validate([
-            "title" => "string",
-            "content" => "string",
-            "image" => "string",
-            "category_id" => "integer",
-            "tags" => ''
-        ]);
+        $data = $request->validated();
         $tags = $data['tags'];
         unset($data['tags']);
 

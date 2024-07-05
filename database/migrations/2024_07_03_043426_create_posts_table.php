@@ -1,4 +1,4 @@
- <?php
+<?php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -23,7 +23,7 @@ return new class extends Migration
             $table->softDeletes();
             $table->unsignedBigInteger('category_id');
 
-            $table->foreign('category_id')->on('categories')->references('id');
+            // $table->foreign('category_id')->on('categories')->references('id');
         });
     }
 
