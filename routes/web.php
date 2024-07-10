@@ -14,7 +14,7 @@ use App\Http\Controllers\Post\UpdateController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
 Route::get('/posts', IndexController::class)->name('post.index');
@@ -31,7 +31,7 @@ Route::get('/posts/delete', [PostController::class, 'delete']);
 Route::get('/posts/first_or_create', [PostController::class, 'firstOrCreate']);
 Route::get('/posts/update_or_create', [PostController::class, 'updateOrCreate']);
 
-Route::prefix('admin')->group(function () {
+Route::middleware('admin')->prefix('admin')->group(function () {
     Route::get('/post', [AdminController::class, 'index'])->name('admin.post.index');
 });
 
@@ -40,4 +40,4 @@ Route::get('/contacts', [ContactController::class, 'index'])->name('contact.inde
 Route::get('/about', [AboutController::class, 'index'])->name('about.index');
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
