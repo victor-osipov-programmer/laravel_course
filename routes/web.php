@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\Admin\Post\AdminController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\Post\CreateController;
@@ -18,19 +19,23 @@ Route::get('/', function () {
 });
 
 
-Route::get('/posts', IndexController::class)->name('post.index'); 
-Route::get('/posts/create', CreateController::class)->name('post.create'); 
+Route::get('/posts', IndexController::class)->name('post.index');
+Route::get('/posts/create', CreateController::class)->name('post.create');
 
-Route::post('/posts', StoreController::class)->name('post.store'); 
-Route::get('/posts/{post}', ShowController::class)->name('post.show'); 
-Route::get('/posts/{post}/edit', EditController::class)->name('post.edit'); 
-Route::patch('/posts/{post}', UpdateController::class)->name('post.update'); 
-Route::delete('/posts/{post}', DestroyController::class)->name('post.destroy'); 
+Route::post('/posts', StoreController::class)->name('post.store');
+Route::get('/posts/{post}', ShowController::class)->name('post.show');
+Route::get('/posts/{post}/edit', EditController::class)->name('post.edit');
+Route::patch('/posts/{post}', UpdateController::class)->name('post.update');
+Route::delete('/posts/{post}', DestroyController::class)->name('post.destroy');
 
-// Route::get('/posts/update', [PostController::class, 'update']); 
-Route::get('/posts/delete', [PostController::class, 'delete']); 
-Route::get('/posts/first_or_create', [PostController::class, 'firstOrCreate']); 
-Route::get('/posts/update_or_create', [PostController::class, 'updateOrCreate']); 
+Route::get('/posts/update', [PostController::class, 'update']);
+Route::get('/posts/delete', [PostController::class, 'delete']);
+Route::get('/posts/first_or_create', [PostController::class, 'firstOrCreate']);
+Route::get('/posts/update_or_create', [PostController::class, 'updateOrCreate']);
+
+Route::prefix('admin')->group(function () {
+    Route::get('/post', [AdminController::class, 'index'])->name('admin.post.index');
+});
 
 Route::get('/main', [MainController::class, 'index'])->name('main.index');
 Route::get('/contacts', [ContactController::class, 'index'])->name('contact.index');
