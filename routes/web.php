@@ -26,10 +26,10 @@ Route::get('/posts/{post}/edit', EditController::class)->name('post.edit');
 Route::patch('/posts/{post}', UpdateController::class)->name('post.update');
 Route::delete('/posts/{post}', DestroyController::class)->name('post.destroy');
 
-Route::get('/posts/update', [PostController::class, 'update']);
-Route::get('/posts/delete', [PostController::class, 'delete']);
-Route::get('/posts/first_or_create', [PostController::class, 'firstOrCreate']);
-Route::get('/posts/update_or_create', [PostController::class, 'updateOrCreate']);
+// Route::get('/posts/update', [PostController::class, 'update']);
+// Route::get('/posts/delete', [PostController::class, 'delete']);
+// Route::get('/posts/first_or_create', [PostController::class, 'firstOrCreate']);
+// Route::get('/posts/update_or_create', [PostController::class, 'updateOrCreate']);
 
 Route::middleware('admin')->prefix('admin')->group(function () {
     Route::get('/post', [AdminController::class, 'index'])->name('admin.post.index');
