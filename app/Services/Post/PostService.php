@@ -23,5 +23,6 @@ class PostService
 
         $post->update($data);
         $post->tags()->sync($tags);
+        return $post->fresh();
     }
 }
