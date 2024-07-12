@@ -6,7 +6,7 @@ use App\Components\ImportDataClient;
 use App\Models\Post;
 use Illuminate\Console\Command;
 
-class import_json_placeholder_command extends Command
+class ImportJsonPlaceholderCommand extends Command
 {
     protected $signature = 'import:json_placeholder';
     protected $description = 'Get data from jsonplaceholder';
